@@ -5,10 +5,28 @@
 
 # install directory
 
-while getopts ":p:" opt; do
+
+show_help() {
+    cat <<EOF
+Usage: $(basename "$0") [OPTIONS] [CONFIG GIT REPO]
+
+Neovim instalation script.
+
+OPTIONS:
+  -p    Sets the instalation root directory. (defaults to /root)
+  -h    Show this help message.
+
+EOF
+}
+
+while getopts ":p:h" opt; do
     case ${opt} in
     p)
         INSTALL_DIR="${OPTARG}"
+        ;;
+    h)
+        show_help;
+        exit 0;
         ;;
     esac
 done
