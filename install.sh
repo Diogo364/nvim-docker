@@ -4,7 +4,18 @@
 # AUTHOR: Thomas Patton
 
 # install directory
-INSTALL_DIR="/root/"
+
+while getopts ":p:" opt; do
+    case ${opt} in
+    p)
+        INSTALL_DIR="${OPTARG}"
+        ;;
+    esac
+done
+shift $((OPTIND-1))
+
+
+INSTALL_DIR="${INSTALL_DIR:-/root}"
 
 echo "Running Docker container setup..."
 
