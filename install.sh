@@ -38,14 +38,14 @@ INSTALL_DIR="${INSTALL_DIR:-/root}"
 echo "Running Docker container setup..."
 
 # Update XDG_CONFIG_HOME
-export XDG_CONFIG_HOME="${INSTALL_DIR}.config"
-export XDG_DATA_HOME="${INSTALL_DIR}.local/share"
-export XDG_STATE_HOME="${INSTALL_DIR}.local/state"
+export XDG_CONFIG_HOME="${INSTALL_DIR}/.config"
+export XDG_DATA_HOME="${INSTALL_DIR}/.local/share"
+export XDG_STATE_HOME="${INSTALL_DIR}/.local/state"
 export TERM="xterm-256color"
 export DISPLAY=":0"
 
 cd "$INSTALL_DIR"
-rm -rf "${INSTALL_DIR}.config"
+rm -rf "${XDG_CONFIG_HOME}"
 sudo apt-get update
 
 # CLANG
@@ -60,14 +60,14 @@ sudo apt-get install -y xclip
 
 # NPM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-export NVM_DIR="$INSTALL_DIR.config/nvm"
+export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 nvm install 16.15.1
 
 # NEOVIM
 wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
 tar xzvf nvim-linux64.tar.gz
-sudo ln -s "${INSTALL_DIR}nvim-linux64/bin/nvim" /usr/local/bin/nvim
+sudo ln -s "${INSTALL_DIR}/nvim-linux64/bin/nvim" /usr/local/bin/nvim
 sudo apt-get install -y python3-venv
 
 # RIPGREP
@@ -76,7 +76,7 @@ sudo apt-get install "./ripgrep_13.0.0_amd64.deb"
 
 # Git Repository (provided as an argument)
 if [ -n "$1" ]; then
-    git clone "$1" "${INSTALL_DIR}.config/nvim" 
+    git clone "$1" "${XDG_CONFIG_HOME}/nvim" 
 else
     echo "Git repository URL not provided, proceeding without"
 fi
