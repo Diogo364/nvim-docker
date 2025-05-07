@@ -50,13 +50,6 @@ cd "$INSTALL_DIR"
 rm -rf "${XDG_CONFIG_HOME}"
 sudo apt-get update
 
-# CLANG
-sudo apt-get install -y clang
-sudo ln -s -f .clangd ~/.clangd
-
-# BEAR
-sudo apt-get install -y bear
-
 # XCLIP 
 sudo apt-get install -y xclip
 
