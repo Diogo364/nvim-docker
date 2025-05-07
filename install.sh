@@ -54,10 +54,12 @@ sudo apt-get update
 sudo apt-get install -y xclip
 
 # NPM
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm install 16.15.1
+if ! command -v npm > /dev/null ; then
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    nvm install 16.15.1
+fi
 
 # NEOVIM
 wget ${NEOVIM_INSTALLER}
