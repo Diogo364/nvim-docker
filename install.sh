@@ -34,6 +34,8 @@ shift $((OPTIND-1))
 
 
 INSTALL_DIR="${INSTALL_DIR:-/root}"
+NEOVIM_DIR=nvim-linux-x86_64
+NEOVIM_INSTALLER="https://github.com/neovim/neovim/releases/download/v0.11.1/${NEOVIM_DIR}.tar.gz"
 
 echo "Running Docker container setup..."
 
@@ -65,9 +67,9 @@ export NVM_DIR="${XDG_CONFIG_HOME}/nvm"
 nvm install 16.15.1
 
 # NEOVIM
-wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim-linux64.tar.gz
-tar xzvf nvim-linux64.tar.gz
-sudo ln -s "${INSTALL_DIR}/nvim-linux64/bin/nvim" /usr/local/bin/nvim
+wget ${NEOVIM_INSTALLER}
+tar xzvf ${NEOVIM_DIR}.tar.gz
+sudo ln -s "${INSTALL_DIR}/${NEOVIM_DIR}/bin/nvim" /usr/local/bin/nvim
 sudo apt-get install -y python3-venv
 
 # RIPGREP
@@ -83,5 +85,3 @@ fi
 
 # exit
 cd ~
-
-
