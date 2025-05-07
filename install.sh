@@ -69,6 +69,10 @@ sudo apt-get install -y python3-venv
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
 sudo apt-get install "./ripgrep_13.0.0_amd64.deb"
 
+# FD
+curl -LO https://github.com/sharkdp/fd/releases/download/v10.2.0/fd-musl_10.2.0_amd64.deb
+sudo apt-get install "./fd-musl_10.2.0_amd64.deb"
+
 # Git Repository (provided as an argument)
 if [ -n "$1" ]; then
     git clone "$1" "${XDG_CONFIG_HOME}/nvim" 
